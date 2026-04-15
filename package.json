@@ -13,9 +13,12 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "typeorm:cli": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ormconfig-migration.ts",
-    "migration:up": "yarn typeorm:cli migration:run",
-    "migration:down": "yarn typeorm:cli migration:revert"
+    "typeorm:cli:migration": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ormconfig-migration.ts",
+    "typeorm:cli:seed": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ormconfig-seed.ts",
+    "migration:up": "yarn typeorm:cli:migration migration:run",
+    "migration:down": "yarn typeorm:cli:migration migration:revert",
+    "seed:up": "yarn typeorm:cli:seed migration:run",
+    "seed:down": "yarn typeorm:cli:seed migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -25,6 +28,7 @@
     "@nestjs/typeorm": "^11.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
+    "dayjs": "^1.11.20",
     "pg": "^8.20.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",

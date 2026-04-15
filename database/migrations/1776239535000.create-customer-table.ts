@@ -67,7 +67,7 @@ export class CreateCustomerTable implements MigrationInterface {
           },
           {
             name: 'last_activity',
-            type: 'timestamp',
+            type: 'timestamptz',
           },
           {
             name: 'recent_activity',
@@ -75,12 +75,12 @@ export class CreateCustomerTable implements MigrationInterface {
           },
           {
             name: 'created_at',
-            type: 'timestamp',
+            type: 'timestamptz',
             default: 'CURRENT_TIMESTAMP',
           },
           {
             name: 'updated_at',
-            type: 'timestamp',
+            type: 'timestamptz',
             default: 'CURRENT_TIMESTAMP',
             onUpdate: 'CURRENT_TIMESTAMP',
           },
