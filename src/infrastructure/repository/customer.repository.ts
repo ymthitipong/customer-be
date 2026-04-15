@@ -44,6 +44,6 @@ export class CustomerRepository implements CustomerRepositoryInterface {
       return null;
     }
 
-    return customer;
+    return this.toCustomerDomain(customer);
   }
 }
