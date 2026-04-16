@@ -10,10 +10,3 @@ services:
       PGDATA: /data/postgres
     ports:
       - 5003:5432
-
-  redis:
-    image: redis:7-alpine
-    restart: unless-stopped
-    container_name: customer_redis
-    ports:
-      - 6379:6379
