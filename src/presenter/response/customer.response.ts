@@ -2,7 +2,7 @@ import { Customer } from '@domain/interface/customer.interface';
 import dayjs from 'dayjs';
 
 export interface CustomerResponseInterface {
-  object: string;
+  object: 'customer';
   id: number;
   name: string;
   company: string;
@@ -45,7 +45,7 @@ const formatDisplayTime = (time: dayjs.Dayjs): string => {
   return `${years} years ago`;
 };
 
-export const mapCustomerToResponse = (
+export const toCustomerResponse = (
   customer: Customer,
 ): CustomerResponseInterface => ({
   object: 'customer',
@@ -53,16 +53,16 @@ export const mapCustomerToResponse = (
   name: customer.name,
   company: customer.company,
   initials: customer.initials,
-  active_since: customer.active_since,
+  active_since: customer.activeSince,
   email: customer.email,
   phone: customer.phone,
   salesperson: customer.salesperson,
-  credit_status: customer.credit_status,
+  credit_status: customer.creditStatus,
   status: customer.status,
-  total_spend: customer.total_spend,
-  number_of_purchases: customer.number_of_purchases,
-  last_activity: dayjs(customer.last_activity).toISOString(),
-  recent_activity: customer.recent_activity.map((activity) => ({
+  total_spend: customer.totalSpend,
+  number_of_purchases: customer.numberOfPurchases,
+  last_activity: dayjs(customer.lastActivity).toISOString(),
+  recent_activity: customer.recentActivity.map((activity) => ({
     action: activity.action,
     time: activity.time,
     displayTime: formatDisplayTime(dayjs(activity.time)),

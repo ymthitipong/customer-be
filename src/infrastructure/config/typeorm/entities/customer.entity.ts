@@ -34,30 +34,40 @@ export class CustomerTypeormEntity {
   @Column({ type: 'text' })
   salesperson: string;
 
-  @Column({ type: 'text', default: 'No Credit' })
-  credit_status: string;
+  @Column({ type: 'text', default: 'No Credit', name: 'credit_status' })
+  creditStatus: string;
 
   @Column({ type: 'text', default: 'Active' })
   status: string;
 
-  @Column({ type: 'decimal', precision: 12, scale: 2, default: 0 })
-  total_spend: number;
+  @Column({
+    type: 'decimal',
+    precision: 12,
+    scale: 2,
+    default: 0,
+    name: 'total_spend',
+  })
+  totalSpend: number;
 
-  @Column({ type: 'integer', default: 0 })
-  number_of_purchases: number;
+  @Column({
+    type: 'integer',
+    default: 0,
+    name: 'number_of_purchases',
+  })
+  numberOfPurchases: number;
 
-  @Column({ type: 'date' })
-  active_since: string;
+  @Column({ type: 'date', name: 'active_since' })
+  activeSince: string;
 
-  @Column({ type: 'timestamptz' })
-  last_activity: Date;
+  @Column({ type: 'timestamptz', name: 'last_activity' })
+  lastActivity: Date;
 
-  @Column({ type: 'jsonb' })
-  recent_activity: Activity[];
+  @Column({ type: 'jsonb', name: 'recent_activity' })
+  recentActivity: Activity[];
 
-  @CreateDateColumn({ type: 'timestamptz' })
-  created_at: Date;
+  @CreateDateColumn({ type: 'timestamptz', name: 'created_at' })
+  createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamptz' })
-  updated_at: Date;
+  @UpdateDateColumn({ type: 'timestamptz', name: 'updated_at' })
+  updatedAt: Date;
 }

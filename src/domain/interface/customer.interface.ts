@@ -6,16 +6,16 @@ export interface Customer {
   email: string;
   phone: string;
   salesperson: string;
-  credit_status: string;
+  creditStatus: string;
   status: string;
-  total_spend: number;
-  number_of_purchases: number;
-  active_since: string; // Date string in YYYY-MM-DD format
-  last_activity: Date;
-  recent_activity: {
+  totalSpend: number;
+  numberOfPurchases: number;
+  activeSince: string; // Date string in YYYY-MM-DD format
+  lastActivity: Date;
+  recentActivity: {
     action: string;
     time: string;
   }[];
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
