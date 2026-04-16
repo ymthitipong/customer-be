@@ -17,13 +17,14 @@ interface CustomerData {
   recent_activity: string; // json
 }
 
-export class Insert1000Customers implements MigrationInterface {
+export class InsertCustomers implements MigrationInterface {
   name = 'InsertCustomers1776239840000';
+  numberOfRecords = 1000;
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     const customers: CustomerData[] = [];
 
-    for (let i = 1; i <= 1000; i++) {
+    for (let i = 1; i <= this.numberOfRecords; i++) {
       const firstName = this.generateRandomFirstName();
       const lastName = this.generateRandomLastName();
       const company = this.generateRandomCompany();
@@ -132,16 +133,12 @@ export class Insert1000Customers implements MigrationInterface {
 
   private generateRandomSalespersons(): string {
     const salespersons = [
-      'John Smith',
-      'Jane Doe',
-      'Robert Johnson',
-      'Emily Davis',
-      'Michael Wilson',
-      'Sarah Brown',
-      'David Taylor',
-      'Lisa Anderson',
-      'James Martinez',
-      'Jennifer Thomas',
+      'JOHN SMITH', 'JANE DOE', 'ROBERT JOHNSON', 'EMILY DAVIS', 'MICHAEL WILSON',
+      'SARAH BROWN', 'DAVID TAYLOR', 'LISA ANDERSON', 'JAMES MARTINEZ', 'JENNIFER THOMAS',
+      'WILLIAM JACKSON', 'OLIVIA WHITE', 'BENJAMIN HARRIS', 'EMMA CLARK', 'JACOB LEWIS',
+      'AVA ROBINSON', 'MASON WALKER', 'ISABELLA YOUNG', 'ETHAN ALLEN', 'MIA KING',
+      'LOGAN SCOTT', 'SOPHIA GREEN', 'DANIEL HALL', 'CHARLOTTE ADAMS', 'JACK WRIGHT',
+      'AMELIA HILL', 'ALEXANDER BAKER', 'HARPER GONZALEZ', 'ELIJAH NELSON', 'EVELYN CARTER',
     ];
     const salespersonLength = salespersons.length;
     return salespersons[Math.floor(Math.random() * salespersonLength)];
@@ -149,77 +146,24 @@ export class Insert1000Customers implements MigrationInterface {
 
   private generateRandomFirstName(): string {
     const firstNames = [
-      'James',
-      'Mary',
-      'Robert',
-      'Patricia',
-      'John',
-      'Jennifer',
-      'Michael',
-      'Linda',
-      'David',
-      'Elizabeth',
-      'William',
-      'Barbara',
-      'Richard',
-      'Susan',
-      'Joseph',
-      'Jessica',
-      'Thomas',
-      'Sarah',
-      'Charles',
-      'Karen',
-      'Christopher',
-      'Nancy',
-      'Daniel',
-      'Lisa',
-      'Matthew',
-      'Betty',
-      'Anthony',
-      'Helen',
-      'Mark',
-      'Sandra',
-      'Donald',
-      'Donna',
+      'James', 'Mary', 'Robert', 'Patricia', 'John', 'Jennifer', 'Michael', 'Linda', 'David', 'Elizabeth',
+      'William', 'Barbara', 'Richard', 'Susan', 'Joseph', 'Jessica', 'Thomas', 'Sarah', 'Charles', 'Karen',
+      'Christopher', 'Nancy', 'Daniel', 'Lisa', 'Matthew', 'Betty', 'Anthony', 'Helen', 'Mark', 'Sandra',
+      'Donald', 'Donna', 'Paul', 'Ashley', 'Steven', 'Kimberly', 'Andrew', 'Emily', 'Joshua', 'Kenneth',
+      'Laura', 'Brian', 'Angela', 'George', 'Amanda', 'Edward', 'Michelle', 'Ronald', 'Dorothy', 'Timothy',
     ];
-    return firstNames[Math.floor(Math.random() * firstNames.length)];
+    const firstNameLength = firstNames.length;
+    return firstNames[Math.floor(Math.random() * firstNameLength)];
   }
 
   private generateRandomLastName(): string {
     const lastNames = [
-      'Smith',
-      'Johnson',
-      'Williams',
-      'Brown',
-      'Jones',
-      'Garcia',
-      'Miller',
-      'Davis',
-      'Rodriguez',
-      'Martinez',
-      'Hernandez',
-      'Lopez',
-      'Gonzalez',
-      'Wilson',
-      'Anderson',
-      'Thomas',
-      'Taylor',
-      'Moore',
-      'Jackson',
-      'Martin',
-      'Lee',
-      'Perez',
-      'Thompson',
-      'White',
-      'Harris',
-      'Sanchez',
-      'Clark',
-      'Ramirez',
-      'Lewis',
-      'Robinson',
-      'Walker',
+      'Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez',
+      'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin',
+      'Lee', 'Perez', 'Thompson', 'White', 'Harris', 'Sanchez', 'Clark', 'Ramirez', 'Lewis', 'Robinson',
     ];
-    return lastNames[Math.floor(Math.random() * lastNames.length)];
+    const lastNameLength = lastNames.length;
+    return lastNames[Math.floor(Math.random() * lastNameLength)];
   }
 
   private generateRandomRecentActivity(
