@@ -88,18 +88,36 @@ export class InsertCustomers implements MigrationInterface {
 
   private generateRandomCompany(): string {
     const companies = [
-      'Tech Solutions Inc',
-      'Global Trading Co',
-      'Digital Innovations Ltd',
-      'Smart Systems Corp',
-      'Future Technologies',
-      'Innovation Labs',
-      'Data Analytics Pro',
-      'Cloud Computing Services',
-      'Mobile First Tech',
-      'AI Solutions Group',
-      'Blockchain Ventures',
-      'Cybersecurity Experts',
+      'TECHNOVA SOLUTIONS',
+      'BLUEPEAK SYSTEMS',
+      'NEXTGEN DIGITAL',
+      'VERTEX INNOVATIONS',
+      'CLOUDCORE TECHNOLOGIES',
+      'BRIGHTWAVE ANALYTICS',
+      'APEX SOFTWARE LABS',
+      'GLOBALNET SERVICES',
+      'INFINITE LOOP TECH',
+      'PRIMEDATA SOLUTIONS',
+      'SKYLINE IT SERVICES',
+      'QUANTUM EDGE SYSTEMS',
+      'NEXUS DIGITAL GROUP',
+      'FUSIONWORKS TECHNOLOGIES',
+      'CLEVERBRIDGE SOLUTIONS',
+      'IRONGATE CYBERSECURITY',
+      'STELLAR CLOUD SERVICES',
+      'REDWOOD ANALYTICS',
+      'ORION SOFTWARE HOUSE',
+      'HYPERION TECH GROUP',
+      'ZENITH INNOVATIONS',
+      'CODECRAFT STUDIOS',
+      'AURORA DIGITAL SYSTEMS',
+      'MATRIXCORE TECHNOLOGIES',
+      'ELEVATE IT SOLUTIONS',
+      'PINNACLE DATA SERVICES',
+      'NIMBUS CLOUD TECH',
+      'VECTOR SOFTWARE LABS',
+      'CATALYST TECH GROUP',
+      'SUMMIT DIGITAL WORKS',
     ];
     const companyLength = companies.length;
     return companies[Math.floor(Math.random() * companyLength)];
@@ -107,9 +125,10 @@ export class InsertCustomers implements MigrationInterface {
 
   private generateRandomEmail(): string {
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    const charLength = chars.length;
     let name = '';
     for (let i = 0; i < 10; i++) {
-      name += chars[Math.floor(Math.random() * chars.length)];
+      name += chars[Math.floor(Math.random() * charLength)];
     }
     return `${name}@mail.com`;
   }
@@ -124,7 +143,6 @@ export class InsertCustomers implements MigrationInterface {
     const creditStatuses = [
       'No Credit',
       'Good Credit',
-      'Excellent Credit',
       'Poor Credit',
     ];
     const creditStatusLength = creditStatuses.length;
@@ -146,11 +164,11 @@ export class InsertCustomers implements MigrationInterface {
 
   private generateRandomFirstName(): string {
     const firstNames = [
-      'James', 'Mary', 'Robert', 'Patricia', 'John', 'Jennifer', 'Michael', 'Linda', 'David', 'Elizabeth',
-      'William', 'Barbara', 'Richard', 'Susan', 'Joseph', 'Jessica', 'Thomas', 'Sarah', 'Charles', 'Karen',
-      'Christopher', 'Nancy', 'Daniel', 'Lisa', 'Matthew', 'Betty', 'Anthony', 'Helen', 'Mark', 'Sandra',
-      'Donald', 'Donna', 'Paul', 'Ashley', 'Steven', 'Kimberly', 'Andrew', 'Emily', 'Joshua', 'Kenneth',
-      'Laura', 'Brian', 'Angela', 'George', 'Amanda', 'Edward', 'Michelle', 'Ronald', 'Dorothy', 'Timothy',
+      'JAMES', 'MARY', 'ROBERT', 'PATRICIA', 'JOHN', 'JENNIFER', 'MICHAEL', 'LINDA', 'DAVID', 'ELIZABETH',
+      'WILLIAM', 'BARBARA', 'RICHARD', 'SUSAN', 'JOSEPH', 'JESSICA', 'THOMAS', 'SARAH', 'CHARLES', 'KAREN',
+      'CHRISTOPHER', 'NANCY', 'DANIEL', 'LISA', 'MATTHEW', 'BETTY', 'ANTHONY', 'HELEN', 'MARK', 'SANDRA',
+      'DONALD', 'DONNA', 'PAUL', 'ASHLEY', 'STEVEN', 'KIMBERLY', 'ANDREW', 'EMILY', 'JOSHUA', 'KENNETH',
+      'LAURA', 'BRIAN', 'ANGELA', 'GEORGE', 'AMANDA', 'EDWARD', 'MICHELLE', 'RONALD', 'DOROTHY', 'TIMOTHY',
     ];
     const firstNameLength = firstNames.length;
     return firstNames[Math.floor(Math.random() * firstNameLength)];
@@ -158,9 +176,9 @@ export class InsertCustomers implements MigrationInterface {
 
   private generateRandomLastName(): string {
     const lastNames = [
-      'Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez',
-      'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin',
-      'Lee', 'Perez', 'Thompson', 'White', 'Harris', 'Sanchez', 'Clark', 'Ramirez', 'Lewis', 'Robinson',
+      'SMITH', 'JOHNSON', 'WILLIAMS', 'BROWN', 'JONES', 'GARCIA', 'MILLER', 'DAVIS', 'RODRIGUEZ', 'MARTINEZ',
+      'HERNANDEZ', 'LOPEZ', 'GONZALEZ', 'WILSON', 'ANDERSON', 'THOMAS', 'TAYLOR', 'MOORE', 'JACKSON', 'MARTIN',
+      'LEE', 'PEREZ', 'THOMPSON', 'WHITE', 'HARRIS', 'SANCHEZ', 'CLARK', 'RAMIREZ', 'LEWIS', 'ROBINSON',
     ];
     const lastNameLength = lastNames.length;
     return lastNames[Math.floor(Math.random() * lastNameLength)];
