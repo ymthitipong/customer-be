@@ -13,8 +13,6 @@ export class SearchCustomerByIdUsecase {
       throw new NotFoundException('Customer not found');
     }
 
-    console.log(customer);
-
     return customer;
   }
 }

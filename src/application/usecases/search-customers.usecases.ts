@@ -44,8 +44,6 @@ export class SearchCustomersUsecase {
       options,
     });
 
-    console.log(total, customers.length);
-
     return { total, customers };
   }
 }
