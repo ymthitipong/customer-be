@@ -1,98 +1,192 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Customer Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+NestJS backend service for Customer Information
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## Requirements
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Node.js version 20
+- Yarn
+- PostgreSQL version 15
+- Docker & Docker Compose (if running with Docker)
 
-## Project setup
+---
+
+## Local
+
+### Setup (first time only)
 
 ```bash
-$ yarn install
+yarn install
+cp .env.example.local .env
+docker compose up postgres -d
+yarn migration:up
+yarn seed:up
 ```
 
-## Compile and run the project
+### Run
 
 ```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+yarn start:dev      # development (watch mode)
+yarn build && yarn start:prod  # production
 ```
 
-## Run tests
+Server will be running at `http://localhost:8080`
+
+---
+
+## Docker
+
+### Setup (first time only)
 
 ```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+cp .env.example.docker .env
+docker compose up -d --build
+docker compose exec api yarn migration:up
+docker compose exec api yarn seed:up
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Run
 
 ```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
+docker compose up -d
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Stop
 
-## Resources
+```bash
+docker compose down       # keep volumes
+docker compose down -v    # remove volumes
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+---
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## Database Profile
 
-## Support
+### Table: `customer`
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+| Column | Type | Description |
+|---|---|---|
+| `id` | integer | Primary key (auto increment) |
+| `name` | text | Customer name |
+| `company` | text | Company name |
+| `initials` | text | Customer initials |
+| `email` | text | Email address |
+| `phone` | text | Phone number |
+| `salesperson` | text | Assigned salesperson |
+| `credit_status` | text | Credit status (default: `No Credit`) |
+| `status` | text | Customer status (default: `Active`) |
+| `total_spend` | decimal(12,2) | Total spending amount |
+| `number_of_purchases` | integer | Number of purchases |
+| `active_since` | date | Date customer became active |
+| `last_activity` | timestamptz | Last activity timestamp |
+| `recent_activity` | jsonb | Recent activity logs `[{ action, time }]` |
+| `created_at` | timestamptz | Record created timestamp |
+| `updated_at` | timestamptz | Record updated timestamp |
 
-## Stay in touch
+---
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## API Spec
 
-## License
+Base URL: `http://localhost:8080`
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### `GET /health-check`
+Check if the server is running.
+
+Example Response: `200 OK`
+
+---
+
+### `POST /api/login` (Mock API)
+Mock login endpoint, always returns success.
+
+| Field | Type | Required |
+|---|---|---|
+| `username` | string | yes |
+| `password` | string | yes |
+
+Example Response:
+```json
+{ "success": true }
+```
+
+---
+
+### `GET /api/customers/:id`
+Get a single customer by ID.
+
+Example Response:
+```json
+{
+  "object": "customer",
+  "id": 1,
+  "name": "John Doe",
+  "company": "Acme Corp",
+  "initials": "JD",
+  "active_since": "2023-01-01",
+  "email": "john@example.com",
+  "phone": "0812345678",
+  "salesperson": "Jane",
+  "credit_status": "No Credit",
+  "status": "Active",
+  "total_spend": 50000.00,
+  "number_of_purchases": 10,
+  "last_activity": "2024-01-01T00:00:00.000Z",
+  "recent_activity": [{ "action": "Purchase", "time": "2024-01-01T00:00:00.000Z", "displayTime": "3 months ago" }]
+}
+```
+
+---
+
+### `GET /api/customers`
+Search and list customers with filtering, sorting, and pagination.
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `name` | string | - | Search by name |
+| `company` | string | - | Search by company |
+| `salesperson` | string | - | Search by salesperson |
+| `order` | string | `name_asc` | Sort order |
+| `limit` | integer | `20` (max 100) | Results per page |
+| `page` | integer | `1` | Page number |
+
+> At least one of `name`, `company`, or `salesperson` is required.
+
+> Available `order` values: `name_asc`, `name_desc`, `total_spend_asc`, `total_spend_desc`, `number_of_purchases_asc`, `number_of_purchases_desc`, `status_asc`, `status_desc`, `last_activity_asc`, `last_activity_desc`
+
+Example Response:
+```json
+{
+  "object": "list",
+  "page": 1,
+  "limit": 20,
+  "order": "name_asc",
+  "total": 999,
+  "data": [{ "object": "customer", "id": 1, "name": "John Doe", "..." : "..." }]
+}
+```
+
+---
+
+## How the mock data was generated
+
+Seed file: `database/seed/1776239840000.insert-customers.ts`
+
+Generates **1,000 mock customer records** and inserts them into the `customer` table. Each record is built from randomly selected or generated values as follows:
+
+| Field | How it's generated |
+|---|---|
+| `name` | Random first name (50 options) + last name (30 options) |
+| `initials` | First character of first name + last name |
+| `company` | Random pick from 30 predefined company names |
+| `email` | Random 10-character alphanumeric string + `@mail.com` |
+| `phone` | Random prefix (`06`, `08`, `09`) + 8-digit number |
+| `salesperson` | Random pick from 30 predefined salesperson names |
+| `credit_status` | Random pick from `No Credit`, `Good Credit`, `Poor Credit` |
+| `status` | Random pick from `Active`, `Inactive` |
+| `total_spend` | Random number between 1,000–100,000 |
+| `number_of_purchases` | Random number between 1–50 |
+| `active_since` | Random date between 2023-01-01 and 2025-01-01 |
+| `last_activity` | Random date between 2026-01-01 and now |
+| `recent_activity` | 1–5 activity entries, each up to 2 hours before the previous one. Actions: `Payment received`, `Generate Report`, `Receive Email`, `Subscribed Promotion`, `Update Profile`, `Update Billing` |
