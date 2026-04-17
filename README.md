@@ -121,8 +121,8 @@ Example Response:
 {
   "object": "customer",
   "id": 1,
-  "name": "John Doe",
-  "company": "Acme Corp",
+  "name": "JOHN DOE",
+  "company": "ACME CORP",
   "initials": "JD",
   "active_since": "2023-01-01",
   "email": "john@example.com",
@@ -163,7 +163,7 @@ Example Response:
   "limit": 20,
   "order": "name_asc",
   "total": 999,
-  "data": [{ "object": "customer", "id": 1, "name": "John Doe", "..." : "..." }]
+  "data": [{ "object": "customer", "id": 1, "name": "JOHN DOE", "..." : "..." }]
 }
 ```
 
