@@ -42,5 +42,6 @@
         "src/infrastructure/*"
       ],
     }
-  }
+  },
+  "include": ["src/**/*"]
 }
