@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { toCustomerResponse } from '../../response/customer.response';
 import { toApplicationCustomerOrder } from './customer-order-map';
-import { SearchCustomerByIdParamsDto } from './saeach-customer-by-id.request';
+import { SearchCustomerByIdParamsDto } from './search-customer-by-id.request';
 import { SearchCustomersQueryDto } from './search-customers.request';
 
 @Controller('api/customers')
@@ -39,10 +39,14 @@ export class CustomersController {
       throw new BadRequestException('search query is required');
     }
 
+    if (Number(limit) > 100) {
+      throw new BadRequestException('limit must be less than or equal to 100');
+    }
+
     const searchOptions = {
-      name,
-      company,
-      salesperson,
+      name: name?.toUpperCase(),
+      company: company?.toUpperCase(),
+      salesperson: salesperson?.toUpperCase(),
     };
     const orderOptions = toApplicationCustomerOrder(order);
     const options = {
