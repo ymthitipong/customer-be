@@ -1,6 +1,6 @@
 # Customer Backend
 
-NestJS backend service for Customer Information
+NestJS backend service for Customer Information (live url: https://customerservice-staging.up.railway.app).
 
 ---
 
